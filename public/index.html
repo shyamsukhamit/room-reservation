@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-datepicker3.min.css">
+	<style type="text/css">
+		textarea {
+			resize : none;
+		}
+		.hideMe {
+			display: none;
+		}
+	</style>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/bootstrap-datepicker.min.js"></script>
+	<script src="/js/bootbox.min.js"></script>
+	<title>VIT University | Periyar EVR Central Library | Video Conferencing Facility | Online Booking System</title>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/js.js"></script>
+</head>
+<body onload="afterLoad()">
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand"><strong>Periyar EVR Central Library</strong></a>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="container">
+		<h4><strong>Video Conferencing Facility - Online Booking System</strong></h4><br>
+		<form class="form-horizontal" role="form">
+			<!--div class="form-group">
+				<label class="control-label col-sm-2" for="date">Choose Date:</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="date" onchange='getFilledStatus()'><option>Loading...</option></select>
+				</div>
+			</div-->
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="date">Choose Date:</label>
+				<div class="col-sm-10">
+					<div class="input-group date">						
+						<input type="text" class="form-control" id="date" onchange='getFilledStatus()'><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<td nowrap>0:00 AM<br>to<br>0:30 AM</td><td nowrap>0:30 AM<br>to<br>1:00 AM</td>
+							<td nowrap>1:00 AM<br>to<br>1:30 AM</td><td nowrap>1:30 AM<br>to<br>2:00 AM</td>
+							<td nowrap>2:00 AM<br>to<br>2:30 AM</td><td nowrap>2:30 AM<br>to<br>3:00 AM</td>
+							<td nowrap>3:00 AM<br>to<br>3:30 AM</td><td nowrap>3:30 AM<br>to<br>4:00 AM</td>
+							<td nowrap>4:00 AM<br>to<br>4:30 AM</td><td nowrap>4:30 AM<br>to<br>5:00 AM</td>
+							<td nowrap>5:00 AM<br>to<br>5:30 AM</td><td nowrap>5:30 AM<br>to<br>6:00 AM</td>
+							<td nowrap>6:00 AM<br>to<br>6:30 AM</td><td nowrap>6:30 AM<br>to<br>7:00 AM</td>
+							<td nowrap>7:00 AM<br>to<br>7:30 AM</td><td nowrap>7:30 AM<br>to<br>8:00 AM</td>
+							<td nowrap>8:00 AM<br>to<br>8:30 AM</td><td nowrap>8:30 AM<br>to<br>9:00 AM</td>
+							<td nowrap>9:00 AM<br>to<br>9:30 AM</td><td nowrap>9:30 AM<br>to<br>10:00 AM</td>
+							<td nowrap>10:00 AM<br>to<br>10:30 AM</td><td nowrap>10:30 AM<br>to<br>11:00 AM</td>
+							<td nowrap>11:00 AM<br>to<br>11:30 AM</td><td nowrap>11:30 AM<br>to<br>12:00 PM</td>
+						</tr>
+						<tr id="tableStatus1"></tr>
+						<tr>
+							<td nowrap>12:00 PM<br>to<br>12:30 PM</td><td nowrap>12:30 PM<br>to<br>1:00 PM</td>
+							<td nowrap>1:00 PM<br>to<br>1:30 PM</td><td nowrap>1:30 PM<br>to<br>2:00 PM</td>
+							<td nowrap>2:00 PM<br>to<br>2:30 PM</td><td nowrap>2:30 PM<br>to<br>3:00 PM</td>
+							<td nowrap>3:00 PM<br>to<br>3:30 PM</td><td nowrap>3:30 PM<br>to<br>4:00 PM</td>
+							<td nowrap>4:00 PM<br>to<br>4:30 PM</td><td nowrap>4:30 PM<br>to<br>5:00 PM</td>
+							<td nowrap>5:00 PM<br>to<br>5:30 PM</td><td nowrap>5:30 PM<br>to<br>6:00 PM</td>
+							<td nowrap>6:00 PM<br>to<br>6:30 PM</td><td nowrap>6:30 PM<br>to<br>7:00 PM</td>
+							<td nowrap>7:00 PM<br>to<br>7:30 PM</td><td nowrap>7:30 PM<br>to<br>8:00 PM</td>
+							<td nowrap>8:00 PM<br>to<br>8:30 PM</td><td nowrap>8:30 PM<br>to<br>9:00 PM</td>
+							<td nowrap>9:00 PM<br>to<br>9:30 PM</td><td nowrap>9:30 PM<br>to<br>10:00 PM</td>
+							<td nowrap>10:00 PM<br>to<br>10:30 PM</td><td nowrap>10:30 PM<br>to<br>11:00 PM</td>
+							<td nowrap>11:00 PM<br>to<br>11:30 PM</td><td nowrap>11:30 PM<br>to<br>12:00 AM</td>
+						</tr>
+						<tr id="tableStatus2"></tr>
+					</thead>
+					
+				</table>
+			</div>
+			<br>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="time">Choose Time:</label>
+				<div class="col-sm-10"> 
+					<select class="form-control" id="time" onchange="newTime()"></select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="totime">To:</label>
+				<div class="col-sm-10"> 
+					<select class="form-control" id="totime"></select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="name">Faculty Name:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="name" placeholder="Full Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="id">Faculty ID:</label>
+				<div class="col-sm-10"> 
+					<input type="text" class="form-control" id="id" placeholder="12345">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="email">E-Mail:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="email" placeholder="email@vit.ac.in">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="school">School/Center:</label>
+				<div class="col-sm-10"> 
+					<select class="form-control" id="school" onchange="schoolChanged()">
+						<option>School of Advance Science (SAS)</option>
+						<option>School of Architecture (B.Arch)</option>
+						<option>School of Bio Science and Technology (SBST)</option>
+						<option>School of Computer Science and Engineering (SCSE)</option>
+						<option>School of Electrical Engineering (SELECT)</option>
+						<option>School of Electronics Engineering (SENSE)</option>
+						<option>School of Information Technology and Engineering (SITE)</option>
+						<option>School of Mechanical and Building Sciences (SMBS)</option>
+						<option>School of Social Science and Languages (SSL)</option>
+						<option>VIT Business School (VIT BS)</option>
+						<option>Other</option>
+					</select>
+					<input type="text" class="form-control hideMe" id="schoolOther" placeholder="School/Center">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="purpose">Purpose:</label>
+				<div class="col-sm-10">
+					<select class="form-control" id="purpose" onchange="purposeChanged()">
+						<option>Guest Lecture</option>
+						<option>Ph.D Viva</option>
+						<option>Other</option>
+					</select>
+					<input type="text" class="form-control hideMe" id="purposeOther" placeholder="Purpose">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="key_benefits">Key Benefits:</label>
+				<div class="col-sm-10"> 
+					<input type="text" class="form-control" id="key_benefits" placeholder="Benefits and beneficiaries">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="no_aud">No.of Audience:</label>
+				<div class="col-sm-10"> 
+					<input type="number" class="form-control" id="no_aud" placeholder="60" min=1 max=60>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="type">Type:</label>
+				<div class="col-sm-10"> 
+					<select class="form-control" id="type" onchange="typeChanged()">
+						<option>Skype</option>
+						<option>Polycom</option>
+						<option>Webex</option>
+						<option>GoToMeeting</option>
+						<option>Other</option>
+					</select>
+					<input type="text" class="form-control hideMe" id="typeOther" placeholder="Type">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="guest_name">Guest Name:</label>
+				<div class="col-sm-10"> 
+					<input type="text" class="form-control" id="guest_name" placeholder="Dr.John" maxlength="50">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="guest_details">Guest Details:</label>
+				<div class="col-sm-10"> 
+					<textarea class="form-control" id="guest_details" rows="3" maxlength="500"></textarea>
+				</div>
+			</div>
+			<div class="form-group"> 
+				<div class="col-sm-offset-2 col-sm-10">
+					<input type="button" value="Submit" class="btn btn-success" onclick="clicked()">
+				</div>
+			</div>
+		</form>
+		<div class="alert alert-success" role="alert">
+			A confirmation link will be sent to you upon submitting this form. Your reservation will be confirmed only after you click on that link. In the meantime, if someone else books and confirms his/her reservation for the same time schedule as yours, your booking and the confirmation link will become invalid.
+		</div>
+		<div class="alert alert-danger" role="alert">
+			Note : Please use Google Chrome if you have any problems with the site.<br>
+		</div>
+	</div>
+
+</body>
+</html>
